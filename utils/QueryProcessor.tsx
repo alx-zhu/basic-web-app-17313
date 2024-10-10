@@ -10,6 +10,16 @@ export default function QueryProcessor(query: string): string {
     return "azhu3"
   } else if (lowercase.includes("name")) {
     return "jccrawsh and azhu3"
+  } else if (lowercase.includes("plus")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers) {
+      return numbers.reduce((a, b) => (parseInt(a) + parseInt(b)).toString());
+    }
+  } else if (lowercase.includes("largest")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers) {
+      return Math.max(...numbers.map(Number)).toString();
+    }
   }
 
   return "";
