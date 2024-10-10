@@ -39,6 +39,11 @@ export default function QueryProcessor(query: string): string {
       });
       return cube?.toString() || "";
     }
+  } else if (lowercase.includes("minus")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers) {
+      return numbers.reduce((a, b) => (parseInt(a) - parseInt(b)).toString());
+    }
   }
 
   return "";
