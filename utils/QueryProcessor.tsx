@@ -20,6 +20,25 @@ export default function QueryProcessor(query: string): string {
     if (numbers) {
       return Math.max(...numbers.map(Number)).toString();
     }
+  } else if (lowercase.includes("multiplied")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers) {
+      return numbers.reduce((a, b) => (parseInt(a) * parseInt(b)).toString());
+    }
+  } else if (lowercase.includes("square") && lowercase.includes("cube")) {
+    // Extracts numbers that are perfect squares and perfect cubes
+    const numbers = query.match(/\d+/g);
+    if (numbers) {
+      const square = numbers.filter((num) => {
+        const sqrt = Math.sqrt(parseInt(num));
+        return sqrt === Math.floor(sqrt);
+      });
+      const cube = square.find((num) => {
+        const cbrt = Math.cbrt(parseInt(num));
+        return cbrt === Math.floor(cbrt);
+      });
+      return cube?.toString() || "";
+    }
   }
 
   return "";
