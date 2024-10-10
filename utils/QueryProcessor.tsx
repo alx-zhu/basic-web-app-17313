@@ -10,6 +10,12 @@ export default function QueryProcessor(query: string): string {
     return "azhu3"
   } else if (lowercase.includes("name")) {
     return "jccrawsh and azhu3"
+  } else if (lowercase.includes("plus") && lowercase.includes("multiplied")){
+    // Add the first two numbers and multiply by the third
+    const numbers = query.match(/\d+/g);
+    if (numbers) {
+      return ((parseInt(numbers[0]) + parseInt(numbers[1])) * parseInt(numbers[2])).toString();
+    }
   } else if (lowercase.includes("plus")) {
     const numbers = query.match(/\d+/g);
     if (numbers) {
