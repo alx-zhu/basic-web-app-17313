@@ -61,6 +61,11 @@ export default function QueryProcessor(query: string): string {
       };
       return numbers.filter((num) => isPrime(parseInt(num))).join(", ");
     }
+  } else if (lowercase.includes("power")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers) {
+      return Math.pow(parseInt(numbers[0]), parseInt(numbers[1])).toString();
+    }
   }
 
   return "";
